@@ -243,9 +243,6 @@ function App() {
       </div>
 
       <Footer />
-      <ProductsView />
-      <UserProfile />
-      <Cart />
     </div>
   );
 }

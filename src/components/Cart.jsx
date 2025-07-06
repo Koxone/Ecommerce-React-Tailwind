@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-// Iconos internos de emergencia (puedes reemplazar luego)
+// Iconos internos de emergencia
 const CloseIcon = ({ size = 20 }) => (
   <svg
     width={size}
@@ -46,8 +46,7 @@ const TrashIcon = ({ size = 16 }) => (
   </svg>
 );
 
-const Cart = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const Cart = ({ isCartOpen, setIsCartOpen }) => {
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -72,39 +71,34 @@ const Cart = () => {
   ]);
 
   const updateQuantity = (id, newQuantity) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(newQuantity, 0) } : item,
-      ),
-    );
+    if (newQuantity <= 0) removeItem(id);
+    else {
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, quantity: newQuantity } : item,
+        ),
+      );
+    }
   };
 
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
-
-  const closeCart = () => {
-    setIsOpen(false);
-  };
-
-  const proceedToCheckout = () => {
-    alert("Proceeding to checkout (mock)");
-  };
+  const clearCart = () => setCartItems([]);
+  const closeCart = () => setIsCartOpen(false);
+  const proceedToCheckout = () => alert("Proceeding to checkout (mock)");
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
   );
 
-  if (!isOpen) return null;
+  if (!isCartOpen) return null;
 
   return (
-    <div className="bg- bg-opacity-50 fixed inset-0 z-50 flex justify-end">
-      <div className="flex h-full w-full max-w-md flex-col bg-gray-900 shadow-xl">
+    <div className="bg-opacity-50 fixed inset-0 z-50 flex justify-end">
+      <div className="flex h-full w-full max-w-md flex-col border-l border-neutral-700 bg-gray-900 shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-700 p-4">
           <h2 className="text-lg font-bold text-white">
@@ -112,7 +106,7 @@ const Cart = () => {
           </h2>
           <button
             onClick={closeCart}
-            className="text-gray-400 hover:text-white"
+            className="cursor-pointer text-gray-400 hover:text-white"
           >
             <CloseIcon size={20} />
           </button>
@@ -122,10 +116,10 @@ const Cart = () => {
         <div className="flex-1 space-y-4 overflow-y-auto p-4">
           {cartItems.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center text-gray-400">
-              <p className="mb-4">Your cart is empty.</p>
+              <p>Your cart is empty.</p>
               <button
                 onClick={closeCart}
-                className="rounded bg-white px-4 py-2 text-gray-900 hover:bg-gray-200"
+                className="mt-4 cursor-pointer rounded bg-white px-4 py-2 text-gray-900 hover:bg-gray-200"
               >
                 Continue Shopping
               </button>
@@ -163,7 +157,7 @@ const Cart = () => {
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
-                        className="text-gray-400 hover:text-white"
+                        className="cursor-pointer text-gray-400 hover:text-white"
                       >
                         <MinusIcon size={16} />
                       </button>
@@ -174,7 +168,7 @@ const Cart = () => {
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
-                        className="text-gray-400 hover:text-white"
+                        className="cursor-pointer text-gray-400 hover:text-white"
                       >
                         <PlusIcon size={16} />
                       </button>
@@ -185,7 +179,7 @@ const Cart = () => {
                       </span>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="text-red-400 hover:text-red-300"
+                        className="cursor-pointer text-red-400 hover:text-red-300"
                       >
                         <TrashIcon size={16} />
                       </button>
@@ -209,13 +203,13 @@ const Cart = () => {
             </p>
             <button
               onClick={proceedToCheckout}
-              className="w-full rounded bg-white px-4 py-2 font-semibold text-gray-900 hover:bg-gray-200"
+              className="w-full cursor-pointer rounded bg-white px-4 py-2 font-semibold text-gray-900 hover:bg-gray-200"
             >
               Checkout
             </button>
             <button
               onClick={clearCart}
-              className="w-full rounded border border-gray-600 px-4 py-2 text-gray-300 hover:border-white hover:text-white"
+              className="w-full cursor-pointer rounded border border-gray-600 px-4 py-2 text-gray-300 hover:border-white hover:text-white"
             >
               Clear Cart
             </button>
