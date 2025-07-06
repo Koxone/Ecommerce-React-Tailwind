@@ -1,43 +1,45 @@
-import { useState } from 'react'
-import { HeartIcon, StarIcon } from './Icons'
+import { useState } from "react";
+import { HeartIcon, StarIcon } from "./Icons";
 
-const ProductCard = ({ 
+const ProductCard = ({
   product,
   showQuickView = true,
   showWishlist = true,
   showRating = true,
-  className = ""
+  className = "",
 }) => {
-  const [isWishlisted, setIsWishlisted] = useState(false)
-  const [selectedColorIndex, setSelectedColorIndex] = useState(0)
+  const [isWishlisted, setIsWishlisted] = useState(false);
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
 
   const handleWishlistToggle = () => {
-    setIsWishlisted(!isWishlisted)
-  }
+    setIsWishlisted(!isWishlisted);
+  };
 
   const handleColorSelect = (index) => {
-    setSelectedColorIndex(index)
-  }
+    setSelectedColorIndex(index);
+  };
 
   return (
-    <div className={`group relative bg-gray-800 rounded-lg overflow-hidden hover-lift transition-all duration-300 ${className}`}>
+    <div
+      className={`group hover-lift relative max-w-[300px] overflow-hidden rounded-lg bg-gray-800 transition-all duration-300 md:max-h-fit md:max-w-[300px] ${className}`}
+    >
       {/* Product Image */}
-      <div className="relative aspect-[3/4] overflow-hidden">
-        <img 
-          src={product.images?.[selectedColorIndex] || product.image} 
+      <div className="relative aspect-square w-full overflow-hidden md:h-fit md:w-full">
+        <img
+          src={product.images?.[selectedColorIndex] || product.image}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-full md:max-h-[300px] md:w-full md:object-cover"
         />
-        
+
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
           {product.isNew && (
-            <span className="bg-white text-gray-900 px-2 py-1 text-xs font-semibold rounded animate-scale-in">
+            <span className="animate-scale-in rounded bg-white px-2 py-1 text-xs font-semibold text-gray-900">
               NEW
             </span>
           )}
           {product.discount && (
-            <span className="bg-red-500 text-white px-2 py-1 text-xs font-semibold rounded animate-scale-in">
+            <span className="animate-scale-in rounded bg-red-500 px-2 py-1 text-xs font-semibold text-white">
               -{product.discount}%
             </span>
           )}
@@ -47,39 +49,39 @@ const ProductCard = ({
         {showWishlist && (
           <button
             onClick={handleWishlistToggle}
-            className="absolute top-3 right-3 p-2 bg-black bg-opacity-50 hover:bg-opacity-75 rounded-full transition-all duration-200 hover-scale focus-ring opacity-0 group-hover:opacity-100"
+            className="bg-opacity-50 hover:bg-opacity-75 hover-scale focus-ring absolute top-3 right-3 rounded-full bg-black p-2 opacity-0 transition-all duration-200 group-hover:opacity-100"
           >
-            <HeartIcon 
-              size={16} 
+            <HeartIcon
+              size={16}
               filled={isWishlisted}
-              className={isWishlisted ? 'text-red-500' : 'text-white'}
+              className={isWishlisted ? "text-red-500" : "text-white"}
             />
           </button>
         )}
 
         {/* Quick View Button */}
         {showQuickView && (
-          <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <button className="w-full bg-white text-gray-900 py-2 px-4 rounded font-semibold hover:bg-gray-100 transition-colors duration-200 focus-ring">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <button className="focus-ring w-full rounded bg-white px-4 py-2 font-semibold text-gray-900 transition-colors duration-200 hover:bg-gray-100">
               Quick View
             </button>
           </div>
         )}
       </div>
 
-      {/* Product Info */}
+      {/* Bottom Product Info */}
       <div className="p-4">
         {/* Color Options */}
         {product.colors && product.colors.length > 0 && (
-          <div className="flex gap-2 mb-3">
+          <div className="mb-3 flex gap-2">
             {product.colors.map((color, index) => (
               <button
                 key={index}
                 onClick={() => handleColorSelect(index)}
-                className={`w-6 h-6 rounded-full border-2 transition-all duration-200 hover-scale focus-ring ${
-                  selectedColorIndex === index 
-                    ? 'border-white' 
-                    : 'border-gray-600 hover:border-gray-400'
+                className={`hover-scale focus-ring h-6 w-6 rounded-full border-2 transition-all duration-200 ${
+                  selectedColorIndex === index
+                    ? "border-white"
+                    : "border-gray-600 hover:border-gray-400"
                 }`}
                 style={{ backgroundColor: color }}
               />
@@ -88,27 +90,27 @@ const ProductCard = ({
         )}
 
         {/* Product Name */}
-        <h3 className="text-white font-semibold text-lg mb-1 font-montserrat group-hover:text-gray-300 transition-colors duration-200">
+        <h3 className="font-montserrat mb-1 text-lg font-semibold text-white transition-colors duration-200 group-hover:text-gray-300">
           {product.name}
         </h3>
 
         {/* Product Description */}
         {product.description && (
-          <p className="text-gray-400 text-sm mb-2 font-inter">
+          <p className="font-inter mb-2 text-sm text-gray-400">
             {product.description}
           </p>
         )}
 
         {/* Product Color/Variant */}
         {product.color && (
-          <p className="text-gray-500 text-sm mb-2 font-inter">
+          <p className="font-inter mb-2 text-sm text-gray-500">
             {product.color}
           </p>
         )}
 
         {/* Rating */}
         {showRating && product.rating && (
-          <div className="flex items-center gap-1 mb-2">
+          <div className="mb-2 flex items-center gap-1">
             {[...Array(5)].map((_, i) => (
               <StarIcon
                 key={i}
@@ -117,7 +119,7 @@ const ProductCard = ({
                 className="text-yellow-400"
               />
             ))}
-            <span className="text-gray-400 text-sm ml-1 font-inter">
+            <span className="font-inter ml-1 text-sm text-gray-400">
               ({product.reviewCount || 0})
             </span>
           </div>
@@ -125,11 +127,11 @@ const ProductCard = ({
 
         {/* Price */}
         <div className="flex items-center gap-2">
-          <span className="text-white font-bold text-lg font-poppins">
+          <span className="font-poppins text-lg font-bold text-white">
             ${product.price}
           </span>
           {product.originalPrice && product.originalPrice > product.price && (
-            <span className="text-gray-500 line-through text-sm font-poppins">
+            <span className="font-poppins text-sm text-gray-500 line-through">
               ${product.originalPrice}
             </span>
           )}
@@ -137,11 +139,11 @@ const ProductCard = ({
 
         {/* Size Options */}
         {product.sizes && product.sizes.length > 0 && (
-          <div className="flex gap-2 mt-3">
+          <div className="mt-3 flex gap-2">
             {product.sizes.map((size, index) => (
               <button
                 key={index}
-                className="px-3 py-1 border border-gray-600 text-gray-300 text-sm hover:border-white hover:text-white transition-colors duration-200 focus-ring"
+                className="focus-ring border border-gray-600 px-3 py-1 text-sm text-gray-300 transition-colors duration-200 hover:border-white hover:text-white"
               >
                 {size}
               </button>
@@ -150,8 +152,7 @@ const ProductCard = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
-
+export default ProductCard;
