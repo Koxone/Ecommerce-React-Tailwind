@@ -22,17 +22,18 @@ function App() {
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10 mx-auto max-w-4xl px-4">
         <h1 className="font-montserrat mb-4 text-4xl font-bold tracking-wider text-white md:text-6xl lg:text-8xl">
-          SITEWIDE 20% OFF
+          10% DE DESCUENTO
         </h1>
         <p className="font-inter mb-6 text-lg text-white md:text-xl lg:text-2xl">
-          July 4th Sale is live. Stack your favorite athlete code for even more.
+          ¡Nuestra nueva línea de ropa ha llegado! ¡Descuentos en toda la
+          tienda!
         </p>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <button className="hover-lift focus-ring font-poppins rounded-lg bg-white px-6 py-3 font-semibold text-gray-900 transition-all duration-200 hover:bg-gray-100 md:px-8 md:py-4">
-            SHOP WOMEN
+            MUJERES
           </button>
           <button className="hover-lift focus-ring font-poppins rounded-lg border-2 border-white bg-transparent px-6 py-3 font-semibold text-white transition-all duration-200 hover:bg-white hover:text-gray-900 md:px-8 md:py-4">
-            SHOP MEN
+            HOMBRES
           </button>
         </div>
       </div>
@@ -45,14 +46,14 @@ function App() {
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10 mx-auto max-w-4xl px-4">
         <h1 className="font-montserrat mb-4 text-4xl font-bold tracking-wider text-white md:text-6xl lg:text-8xl">
-          INTRODUCING PUMP
+          PRESENTAMOS PUMP
         </h1>
         <p className="font-inter mb-6 text-lg text-white md:text-xl lg:text-2xl">
-          Engineered over two years. Glute-lifting technology that sets a new
-          standard.
+          Desarrollado durante dos años. Tecnología realzadora de glúteos que
+          marca un nuevo estándar.
         </p>
         <button className="hover-lift focus-ring font-poppins rounded-lg bg-white px-6 py-3 font-semibold text-gray-900 transition-all duration-200 hover:bg-gray-100 md:px-8 md:py-4">
-          SHOP WOMEN
+          MUJERES
         </button>
       </div>
     </div>,
@@ -64,13 +65,13 @@ function App() {
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10 mx-auto max-w-4xl px-4">
         <h1 className="font-montserrat mb-4 text-4xl font-bold tracking-wider text-white md:text-6xl lg:text-8xl">
-          SUMMER ESSENTIALS
+          ESENCIALES DE VERANO
         </h1>
         <p className="font-inter mb-6 text-lg text-white md:text-xl lg:text-2xl">
-          Core essentials made to move with you through every season.
+          Esenciales básicos hechos para acompañarte en cada temporada.
         </p>
         <button className="hover-lift focus-ring font-poppins rounded-lg bg-white px-6 py-3 font-semibold text-gray-900 transition-all duration-200 hover:bg-gray-100 md:px-8 md:py-4">
-          SHOP NOW
+          COMPRA AHORA
         </button>
       </div>
     </div>,

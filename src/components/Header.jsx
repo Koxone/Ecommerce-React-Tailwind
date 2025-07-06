@@ -27,7 +27,7 @@ const Header = ({ setCurrentPage }) => {
                 onClick={() => setCurrentPage("home")}
                 className="font-montserrat hover-glow text-2xl font-bold tracking-wider text-white transition-all duration-300"
               >
-                ALPHALETE
+                FitWorld Shop
               </button>
             </div>
 
@@ -55,7 +55,7 @@ const Header = ({ setCurrentPage }) => {
                 onClick={() => setCurrentPage("alphaland")}
                 className="font-poppins hover-lift font-medium text-gray-300 transition-colors duration-200 hover:text-white"
               >
-                ALPHALAND
+                PROMOCIONES
               </button>
             </nav>
 
@@ -112,7 +112,7 @@ const Header = ({ setCurrentPage }) => {
                 }}
                 className="font-poppins block w-full px-3 py-2 text-left font-medium text-gray-300 transition-colors duration-200 hover:text-white"
               >
-                ACCESSORIES
+                ACCESORIOS
               </button>
               <button
                 onClick={() => {
@@ -121,7 +121,7 @@ const Header = ({ setCurrentPage }) => {
                 }}
                 className="font-poppins block w-full px-3 py-2 text-left font-medium text-gray-300 transition-colors duration-200 hover:text-white"
               >
-                ALPHALAND
+                PROMOCIONES
               </button>
             </div>
           </div>
